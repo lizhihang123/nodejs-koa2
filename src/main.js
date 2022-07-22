@@ -1,11 +1,12 @@
-const Koa = require('koa')
+// 环境变量 服务器端口
+const { APP_PORT } = require('./config/config.default')
 
-const app = new Koa()
+// app.use((ctx, next) => {
+//   ctx.body = 'hello api'
+// })
+// 注册路由
+const app = require('./app')
 
-app.use((ctx, next) => {
-  ctx.body = 'hello world'
-})
-
-app.listen(3000, () => {
-  console.log('tha server is running on http://localhost:3000')
+app.listen(APP_PORT, () => {
+  console.log(`tha server is running on http://localhost:${APP_PORT}`)
 })
