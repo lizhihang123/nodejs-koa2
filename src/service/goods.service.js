@@ -55,16 +55,16 @@ class GoodsService {
   async findAllGoods({ pageSize, pageNum }) {
     try {
       const offset = (pageNum - 1) * pageSize
-      // const { count, rows } = await Goods.findAndCountAll({
-      //   // 为什么要 * 1
-      //   limit: pageSize * 1,
-      //   offset: offset,
-      // })
-      const count = await Goods.count()
-      const rows = await Goods.findAll({
+      const { count, rows } = await Goods.findAndCountAll({
+        // 为什么要 * 1
         limit: pageSize * 1,
         offset: offset,
       })
+      // const count = await Goods.count()
+      // const rows = await Goods.findAll({
+      //   limit: pageSize * 1,
+      //   offset: offset,
+      // })
       return {
         list: rows,
         total: count,

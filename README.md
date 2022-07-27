@@ -2147,9 +2147,72 @@ parameters: undefined
 
 
 
+# 25. 添加购物车准备
 
 
 
+route.carts.js
+
+先写一个简单的测试
+
+
+
+添加auth 
+
+
+
+编写 validator中间件
+
+
+
+思考为啥get和post测出来的效果是不一样的
+
+
+
+
+
+
+
+```diff
+async createOrUpdate(user_id, goods_id) {
+    // 根据user_id和goods_id同时查找, 有没有记录
+    let res = await Cart.findOne({
+      where: {
++根据两个字段去查找
+        [Op.and]: {
+          user_id,
+          goods_id,
+        },
+      },
+    })
+
+    if (res) {
+      // 已经存在一条记录, 将number + 1
+      await res.increment('number')
++两个await      return await res.reload()
+    } else {
++如果没有存在
+      return await Cart.create({
+        user_id,
+        goods_id,
+      })
+    }
+  }
+```
+
+
+
+
+
+>查看日志：
+>
+>git log --one line
+
+
+
+优化：
+
+1 不能随便传递一个字段 都能够查询 要看数据库里面有没有这个字段
 
 
 
