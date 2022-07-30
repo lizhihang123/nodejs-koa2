@@ -22,6 +22,8 @@ app.use(
       uploadDir: path.join(__dirname, '../upload'),
       keepExtensions: true,
     },
+    // 属性不能写在formidable
+    parsedMethods: ['GET', 'HEAD', 'DELETE', 'PUT', 'POST', 'PATCH'],
   })
 )
 app.use(parameter(app))

@@ -82,10 +82,36 @@ module.exports = {
     result: '',
   },
 
-  //
+  // 购物车数据格式错误
   cartFormatError: {
     code: '10301',
     message: '购物车数据格式错误',
+    result: '',
+  },
+
+  // 购物车全选失败
+  selectedAllFalse: {
+    code: '10302',
+    message: '购物车全选失败',
+    result: '',
+  },
+  unSelectedAllFalse: {
+    code: '10303',
+    message: '购物车全选失败',
+    result: '',
+  },
+
+  // 地址接口
+  addrFormatError: {
+    code: '10401',
+    message: '订单接口参数错误',
+    result: '',
+  },
+
+  // 订单接口
+  orderFormatError: {
+    code: '10501',
+    message: '订单接口参数错误',
     result: '',
   },
 }

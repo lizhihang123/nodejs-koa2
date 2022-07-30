@@ -9,6 +9,7 @@ class GoodsService {
     }
   }
 
+  // 更新购物车
   async updateGoods(id, goods) {
     try {
       const newObj = {}
@@ -52,6 +53,7 @@ class GoodsService {
     return res > 0 ? true : false
   }
 
+  // 查询所有商品
   async findAllGoods({ pageSize, pageNum }) {
     try {
       const offset = (pageNum - 1) * pageSize
