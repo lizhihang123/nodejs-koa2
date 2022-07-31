@@ -11,6 +11,20 @@ const errhandler = require('./errHandler')
 // koa-parameter参数校验
 const parameter = require('koa-parameter')
 
+// json格式错误处理
+const error = require('koa-json-error')
+app.use(
+  error({
+    format: (err) => {
+      return { code: err.status, message: err.message, result: err.stack }
+    },
+    postFormat: (err, obj) => {
+      let { result, ...rest } = obj
+      return process.env.NODE_ENV === 'production' ? rest : obj
+    },
+  })
+)
+
 // 注册中间件 一定在路由之前使用 能够获取请求体的数据的中间件 [文件上传 ……很多功能]
 app.use(
   KodBody({
@@ -34,6 +48,6 @@ app.use(router.routes())
 app.use(KoaStatic(path.join(__dirname, '.../upload')))
 
 // 统一处理 错误信息
-app.on('error', errhandler)
+// app.on('error', errhandler)
 
 module.exports = app

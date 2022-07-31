@@ -14,6 +14,18 @@ const { auth } = require('../middleware/auth.middleware')
 const router = new Router({
   prefix: '/user',
 })
+
+// 用作测试使用
+router.get('/article/:id', (ctx) => {
+  console.log(ctx.params)
+  // 没有通过ctx.body返回数据时, 默认koa返回404错误
+  // console.log(aaa)
+  if (false) {
+    ctx.body = { id: 1, title: '文章1', content: '文章1' }
+  } else {
+    ctx.throw(422, '参数格式不正确')
+  }
+})
 router.get('/', (ctx, next) => {
   ctx.body = 'hello users'
 })
